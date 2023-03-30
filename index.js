@@ -49,6 +49,17 @@ app.post('/clientes', (req, res) => {
     });
   });
 
+
+  // Actualizar un cliente existente
+app.put('/clientes/:id', (req, res) => {
+    const { id } = req.params;
+    const { nombre,correo,telefono,direccion,creado } = req.body;
+    connection.query(`UPDATE clientes SET nombre='${nombre}', correo='${correo}', telefono='${telefono}', 
+    direccion='${direccion}', creado='${creado}' WHERE id=${id}`, (error, results) => {
+      if (error) throw error;
+      res.send('Registro actualizado exitosamente');
+    });
+  });
 app.listen(3000, () => {
     console.log('API escuchando en el puerto 3000');
   });
