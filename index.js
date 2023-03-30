@@ -40,6 +40,15 @@ app.get('/clientes/:id', (req, res) => {
     });
   });
 
+  // Crear un nuevo cliente
+app.post('/clientes', (req, res) => {
+    const {nombre,correo,telefono,direccion,creado } = req.body;
+    connection.query(`INSERT INTO clientes (nombre,correo,telefono,direccion,creado) VALUES ('${nombre}','${correo}','${telefono}','${direccion}', '${creado}')`, (error, results) => {
+      if (error) throw error;
+      res.send('Registro creado exitosamente');
+    });
+  });
+
 app.listen(3000, () => {
     console.log('API escuchando en el puerto 3000');
   });
