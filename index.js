@@ -60,6 +60,15 @@ app.put('/clientes/:id', (req, res) => {
       res.send('Registro actualizado exitosamente');
     });
   });
+
+  // Eliminar un cliente 
+app.delete('/clientes/:id', (req, res) => {
+    const { id } = req.params;
+    connection.query(`DELETE FROM clientes WHERE id=${id}`, (error, results) => {
+      if (error) throw error;
+      res.send('Cliente eliminado exitosamente');
+    });
+  });
 app.listen(3000, () => {
     console.log('API escuchando en el puerto 3000');
   });
